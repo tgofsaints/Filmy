@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from filmy.views import HomeScreen
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', HomeScreen, name="HomeScreen"),
+    path('admin/', admin.site.urls)
 ]
