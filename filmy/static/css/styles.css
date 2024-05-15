@@ -1,28 +1,90 @@
-body{
-    background-image: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,41,6,1) 100%); 
-    background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  color: white;
+.header {
+    background-color: gray;
+    margin: 0px;
+
 }
 
-.movies__upcoming{
-    display: flexbox;
-    flex-direction: column;
+.header h1{
+    margin: 0;
+}
+
+body {
+    background-image:radial-gradient(circle, rgba(6,6,6,1) 0%, rgba(9,9,9,1) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    font-family: "Mako", sans-serif;
+    font-size: large;
+}
+
+.embreve{
     align-items: center;
     align-content: center;
     text-align: center;
-    border-radius: 10px;
-    color: aliceblue;
-    background-color: aqua;
-    width: 20%;
-    height: 300px;
+    color: white;
 }
 
-.movies__upcoming__card{
-    height: 100%;
+.filmes {
+    width: 100vw; /* Set the height to 100% of the viewport height minus the header height */
+}
+
+.filmes__embreve {
+    display: grid;
+    /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 40px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    color: aliceblue;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    margin: 5%;
+}
+
+.filmes__embreve__card {
+    position: relative;
+    height: 350px;
     width: 100%;
     border-radius: 10px;
     background-color: black;
+    overflow: hidden;
+}
+
+.filmes__embreve__card__titulo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.filmes__embreve__card:hover .filmes__embreve__card__titulo {
+    opacity: 1;
+}
+
+.filmes__embreve__card:hover .poster{
+    opacity: 0.1;
+}
+
+.poster {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.poster:hover {
+    opacity: 0.1;
 }

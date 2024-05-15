@@ -5,25 +5,25 @@
 
     <title>Filmy</title>
     <link type="text/css" rel="stylesheet" href="{% static '/css/styles.css' %}">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Mako&display=swap" rel="stylesheet">
 </head>
+<!-- <header>
+    <div class = "header"> <h1>test</h1></div>
+</header> -->
 <body>
-    <h1>Em Breve</h1>
-    <ul>
-        {% for movie in movies %}
-        <li>
-            <h3>{{ movie.title }}</h3>
-            <p>Release date: {{ movie.release_date }}</p>
-        </li>
-        {% endfor %}
-    </ul>
-
-    <div class="movies">
-        <div class="movies__upcoming">
-        Movie
-        <div class="movies__upcoming__card">
-            Card
-        </div>
+    <div class="embreve"><h1 class="embreve__titulo">Em Breve</h1></div>
+    <div class="filmes">
+        <div class="filmes__embreve">
+            {% for movie in movies %}
+            <div class="filmes__embreve__card">
+                <div class="filmes__embreve__card__titulo">
+                    <h3>{{ movie.title }}</h3>
+                </div>
+                <img src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}" class="poster">
+            </div>
+            {% endfor %}
         </div>
     </div>
 </body>
