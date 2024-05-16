@@ -24,11 +24,11 @@ body {
     align-items: center;
     align-content: center;
     text-align: center;
-    color: white;
+    color: white;margin-top: 50px;
 }
 
 .filmes {
-    width: 100vw; /* Set the height to 100% of the viewport height minus the header height */
+    width: 100vw; 
 }
 
 .filmes__embreve {
