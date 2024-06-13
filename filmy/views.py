@@ -1,26 +1,35 @@
-from django.http import HttpRequest
-from django.http import HttpResponse
-import datetime
 from django.shortcuts import render
+from django.conf import settings
 import requests
+import datetime
 
-def HomeScreen(request):
-    api_key = "e06d43b09426bf8ef8c1b0748ebf262d"
-    url = f"https://api.themoviedb.org/3/movie/upcoming?api_key={api_key}&language=pt-BR&page=1"
-
+# Busca os filmes que serão lançados em breve
+def get_upcoming_movies(url):
     response = requests.get(url)
-    upcomingMovies = response.json()
+    return response.json()
 
-    movies = upcomingMovies['results']
+# Formata os filmes recebidos
+def format_movies(movies):
     for movie in movies:
         movie['release_date'] = datetime.datetime.strptime(movie['release_date'], "%Y-%m-%d").date()
+    return movies
+
+# Determina o status do usuario
+def get_user_status(request):
+    return "Perfil" if request.user.is_authenticated else "Entrar"
+
+# Main
+def HomeScreen(request):
+    url = f"{settings.API_UPCOMING_URL}&language=en-US&region=US&page=1"
+    upcoming_movies_data = get_upcoming_movies(url)
+    movies = format_movies(upcoming_movies_data['results'])
+    EntrarOuPerfil = get_user_status(request)
 
     context = {
         'data_atual': datetime.datetime.now().date(),
-        'dates': upcomingMovies['dates'],
-        'movies': movies
+        'dates': upcoming_movies_data['dates'],
+        'movies': movies,
+        'EntrarOuPerfil': EntrarOuPerfil,
     }
 
     return render(request, 'telainicial.html', context)
-
-

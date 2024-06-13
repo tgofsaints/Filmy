@@ -1,7 +1,20 @@
+from django.http import HttpRequest
+from django.http import HttpResponse
+import datetime
 from django.shortcuts import render
-from django.http import request
+from django.conf import settings
+import requests
 
-# Create your views here.
+def MostrarFilmeInfo(request):
+    FilmeID = request.GET["id"]
+    url = f"{settings.API_SHOW_MOVIE_INFO_URL}"
+    ondeInserirOID = url.find("/movie/") + len("/movie/")
+    enderecoParaBuscarFilme = url[:ondeInserirOID] + FilmeID + url[ondeInserirOID:]
+    filme = requests.get(enderecoParaBuscarFilme).json()
 
-def MostrarFilmeInfo():
-       return render(request, 'mostrarinfo.html')
+    context = {
+        'FilmeID': FilmeID,
+        'filme': filme,
+    }
+
+    return render(request, 'showinfo.html', context)

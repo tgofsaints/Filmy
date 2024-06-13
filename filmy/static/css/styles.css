@@ -1,90 +1,152 @@
-.header {
-    background-color: gray;
-    margin: 0px;
-
+@font-face {
+    font-family: 'Rubik';
+    src: url('../fonts/Rubik.ttf') format('truetype');
 }
 
-.header h1{
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 50px; /* Adjust this value to set the offset */
 }
 
 body {
-    background-image:radial-gradient(circle, rgba(6,6,6,1) 0%, rgba(9,9,9,1) 100%);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    color: rgb(0, 0, 0);
-    margin: 0px;
-    font-family: "Mako", sans-serif;
-    font-size: large;
-}
-
-.embreve{
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    color: white;margin-top: 50px;
-}
-
-.filmes {
-    width: 100vw; 
-}
-
-.filmes__embreve {
-    display: grid;
-    /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 40px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    color: aliceblue;
-    width: auto;
-    height: auto;
-    padding: 20px;
-    margin: 5%;
-}
-
-.filmes__embreve__card {
-    position: relative;
-    height: 350px;
-    width: 100%;
-    border-radius: 10px;
+    margin: 0 100px;
     background-color: black;
-    overflow: hidden;
+    font-family: 'Rubik', sans-serif;
 }
 
-.filmes__embreve__card__titulo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+h1 {
+    margin: 50px 0 50px 0;
     color: white;
-    text-align: center;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    font-family: 'Rubik', sans-serif;
 }
 
-.filmes__embreve__card:hover .filmes__embreve__card__titulo {
-    opacity: 1;
-}
-
-.filmes__embreve__card:hover .poster{
-    opacity: 0.1;
-}
-
-.poster {
-    border-radius: 10px;
-    height: 100%;
+.cabecalho {
+    position: fixed;
+    top: 0;
+    z-index: 10;
     width: 100%;
-    object-fit: cover;
-    z-index: -1;
+    /* background: linear-gradient(360deg, rgba(0, 0, 0, 0) 0%, rgba(1, 29, 53, 0.87) 100%); */
 }
 
-.poster:hover {
-    opacity: 0.1;
+.cabecalho__menu {
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    margin-bottom: 40px;
+    justify-content: space-evenly;
+}
+
+.paginainicial {
+    margin: 50px;
+}
+
+.embreve {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.embreve__card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.filme_card__poster {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.filme__card__poster__imagem {
+    object-fit: cover;
+    width: 100%;
+    height: 300px; /* Adjust as needed */
+    border-radius: 5px;
+    border: 1px solid rgb(32, 32, 32);
+    transition: border-color 0.3s ease-in-out;
+}
+
+.filme__card__poster__imagem:hover {
+    border-color: rgb(82, 82, 82);
+}
+
+.avaliacao {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    z-index: 1;
+}
+
+.filme_card__info {
+    margin: 5px 0 15px 0;
+    font-size: 18px;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+}
+
+.filme_card__info a {
+    text-decoration: none;
+    color: white;
+}
+
+.ultimo-lancamento {}
+
+.ultimo-lancamento__filme {
+    position: relative;
+}
+
+.ultimo-lancamento__filme__poster {
+    object-fit: cover;
+    width: 100%;
+    height: 300px; /* Adjust as needed */
+    border-radius: 5px;
+    border: 1px solid rgb(32, 32, 32);
+    transition: border-color 0.3s ease-in-out;
+}
+
+.ultimo-lancamento__filme__poster::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.ultimo-lancamento__filme__info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 4%;
+    font-size: xx-large;
+}
+
+.ultimo-lancamento__poster__imagem {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid rgb(32, 32, 32);
+    transition: border-color 0.3s ease-in-out;
+}
+
+
+.filme_card__info a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: white;
 }
