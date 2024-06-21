@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filmy</title>
+    <link type="text/css" rel="stylesheet" href="{% static '/css/filmeinfo.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Mako&display=swap" rel="stylesheet">
+</head>
+<header>
+    <div class = "header"></div>
+</header>
+<body><div class="container">
+    <div class="info">
+        <div class="info__filme__poster">
+            <img src="https://image.tmdb.org/t/p/original/{{ filme.poster_path }}" width="300px" class="poster">
+        </div>
+        <div class="info__filme__info">
+            
+        </div>
+        
+        <div class="info__titulo">
+            <h1>{{ FilmeID }}</h1>
+            <h1>{{ filme.title }}</h1>
+            <p>{{ filme.release_date }}</p>
+            <p>{{ filme.overview }}</p>
+        </div>
+    </div></div>
+</body>
+</html>

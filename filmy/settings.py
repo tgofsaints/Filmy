@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,6 +29,8 @@ SECRET_KEY = 'django-insecure-mx2f*@d)^44$_4c=9_v4ef$j7fp1_(y5c1bac9923#25h#5s6+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ALLOWED_HOSTS = ['192.168.10.121', '10.27.65.30']
+
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'filmy',
+    'mostrarinfo',
+    'autenticacao',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +64,7 @@ ROOT_URLCONF = 'filmy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,21 +117,34 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Araguaina'
 
 USE_I18N = True
 
 USE_TZ = True
 
+DATE_FORMAT = '%d/%m/%Y'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR/'static'
+STATICFILES_DIRS = [BASE_DIR/'filmy'/'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = '/'
+
+
+
+API_UPCOMING_URL = os.environ.get('API_URL') + os.environ.get('API_VERSION') + os.environ.get('API_UPCOMING_MOVIES_ENDPOINT') +"api_key="+ os.environ.get('API_KEY')
+
+API_SHOW_MOVIE_INFO_URL = os.environ.get('API_URL') + os.environ.get('API_VERSION') + "/movie/" +"?api_key="+ os.environ.get('API_KEY') + "&language=en-US"

@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmy</title>
+    <link type="text/css" rel="stylesheet" href="{% static '/css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Mako&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="cabecalho__logo">
+            <img src="{% static '/img/logo.png' %}" alt="Logo Filmy">
+        </div>
+        <nav class="cabecalho__menu">
+            <!--<ul>
+                <li><a href="#">Em Breve</a></li>
+                <li><a href="#">Em Cartaz</a></li>
+                <li><a href="#">Sobre</a></li>
+            </ul>--> 
+            <a href="#UltimoLancamento">Ultimo Lancamento</a>
+            <a href="#EmBreve">Em Breve</a>
+            <a href="/login">{{EntrarOuPerfil}}</a>
+        </nav>
+    </header>
+    <div class="paginainicial">
+
+        <div  id="UltimoLancamento" class="ultimo-lancamento">
+            <h1>Próximo Lançamento</h1>
+            <div class="ultimo-lancamento__filme">
+                <div class="ultimo-lancamento__filme__poster">
+                    <a href="/filme?id={{ movies.0.id }}">
+                        <img src="https://image.tmdb.org/t/p/original/{{movies.0.poster_path}}"
+                            class="ultimo-lancamento__poster__imagem"></a>
+                </div>
+                <div class="ultimo-lancamento__filme__info">
+                    <a href="/filme?id={{ movies.0.id }}">{{ movies.0.title|upper }}</a>
+                </div>
+            </div>
+        </div>
+
+
+        <h1 id="EmBreve">EM BREVE</h1>
+        <div class="embreve">
+
+            {% for filme in movies %}
+            <div class="embreve__card">
+                <div class="filme_card__poster">
+                    <!--<div class="poster__imagem"> -->
+                    <a href="/filme?id={{ filme.id }}">
+                        <img src="https://image.tmdb.org/t/p/original/{{filme.poster_path}}"
+                            class="filme__card__poster__imagem"></a>
+                    <!-- 
+                            <div class="avaliacao">
+                            {% if filme.vote_average > 0 %}
+                                <h1>{{ filme.vote_average|floatformat:1 }}</h1>
+                            {% else %}
+                                <h1>SEM AVALIACAO</h1>
+                            {% endif %}
+                         </div> 
+                    </div>
+                    -->
+
+
+                </div>
+                <div class="filme_card__info">
+                    <a href="/filme?id={{ filme.id }}">{{ filme.title|upper }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
