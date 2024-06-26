@@ -10,13 +10,15 @@ body{
     font-family: 'Rubik', sans-serif;
     height: 100vh;
     overflow: hidden;
+    margin: 0;
 }
 
 .container{
-    margin: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    justify-items: center;
+    align-content: center;
     align-items: center;
     height: 100vh;
 
@@ -28,7 +30,7 @@ input{
     border-color: rgb(255, 255, 255);
     border-width: 1px;
     border-radius: 5px;
-    width: 300px;
+    width: 100%;
 }
 
 .form-group{

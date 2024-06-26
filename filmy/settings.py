@@ -31,7 +31,7 @@ DEBUG = True
 
 #ALLOWED_HOSTS = ['192.168.10.121', '10.27.65.30']
 
-ALLOWED_HOSTS = ['192.168.10.121', '10.27.132.97']
+ALLOWED_HOSTS = ['192.168.10.121', '10.27.132.97', '127.0.0.1']
 
 
 # Application definition
@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Araguaina'
 

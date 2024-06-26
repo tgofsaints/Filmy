@@ -7,10 +7,6 @@ from django.conf import settings
 from .forms import RegistrationForm
 
 class Login(View):
-    """
-    Class Based View para autenticação de usuários.
-    """
-    
     def get(self, request):
         contexto = {'mensagem': ''}
         if request.user.is_authenticated:
@@ -36,17 +32,11 @@ class Login(View):
         return render(request, 'login.html', {'mensagem': 'Usuário ou senha inválidos.'})
 
 class Logout(View):
-    """
-    Class Based View para realizar logout de usuários.
-    """
     def get(self, request):
         logout(request)
         return redirect(settings.LOGIN_URL)
 
 class Register(View):
-    """
-    Class Based View for user registration.
-    """
     def get(self, request):
         if request.user.is_authenticated:
             return redirect('/')
