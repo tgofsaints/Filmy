@@ -31,7 +31,7 @@ DEBUG = True
 
 #ALLOWED_HOSTS = ['192.168.10.121', '10.27.65.30']
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.10.121', '10.27.132.97']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'filmy',
+    'userprofile',
     'mostrarinfo',
     'autenticacao',
     'rest_framework',

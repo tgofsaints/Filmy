@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmy</title>
-    <link type="text/css" rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="{% static '/css/login.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Mako&display=swap" rel="stylesheet">
@@ -16,16 +16,22 @@
     <form action="{% url 'Login' %}" method="POST">
     {% csrf_token %}
 
+    <div class="container">
+
+    <h1 class="login__titulo">L o g i n</h1>
     <div class="form-group">  
-        <label for="usuario">Usuário:</label>  
+        <label for="usuario">User:</label>  
         <input type="text" name="usuario" id="usuario" class="form-control" />
-    </div>  
-    <div class="form-group">  
-        <label for="senha">Senha:</label>  
+
+        <label for="senha">Password:</label>  
         <input type="password" name="senha" id="senha" class="form-control" />
     </div>  
-    
-    <button type="submit">Submit</button>
+    <div class="buttons">
+    <button type="submit" class="login">Log In</button>
+    <div class="buttons2">
+    <p>Don't have an account? </p> <a href="/register/" class="registro">REGISTER</a>
+    </div> 
+    </div>
     </form>
 
     {% if mensagem %}
@@ -33,6 +39,7 @@
         {{ mensagem }}
     </div>
     {% endif %}
+</div>
 </body>
 
 </html>

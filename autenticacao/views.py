@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.http import HttpResponse
 from django.conf import settings
+from .forms import RegistrationForm
 
 class Login(View):
     """
@@ -13,8 +14,7 @@ class Login(View):
     def get(self, request):
         contexto = {'mensagem': ''}
         if request.user.is_authenticated:
-            return HttpResponse('Usuário já está autenticacao!')
-            # return redirect("/veiculos")
+            return redirect('/')  # Redirect to the homepage if user is already authenticated
         else:
             return render(request, 'login.html', contexto)
 
@@ -29,7 +29,7 @@ class Login(View):
             # Verifica se o usuário ainda está ativo no sistema
             if user.is_active:
                 login(request, user)
-                return HttpResponse('Usuário autenticacao com sucesso!')
+                return redirect('/')  # Redirect to the homepage upon successful login
 
             return render(request, 'login.html', {'mensagem': 'Usuário inativo.'})
 
@@ -42,3 +42,24 @@ class Logout(View):
     def get(self, request):
         logout(request)
         return redirect(settings.LOGIN_URL)
+
+class Register(View):
+    """
+    Class Based View for user registration.
+    """
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('/')
+        else:
+            form = RegistrationForm()
+            return render(request, 'register.html', {'form': form})
+
+    def post(self, request):
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            login(request, user)
+            return redirect('/')
+        return render(request, 'register.html', {'form': form})
