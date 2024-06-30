@@ -3,6 +3,7 @@ from mostrarinfo.models import ToWatchList
 from django.conf import settings
 from django.urls import reverse
 import requests
+import datetime
 
 def watchlist(request):
     if request.user.is_authenticated:
@@ -15,7 +16,8 @@ def watchlist(request):
             enderecoParaBuscarFilme = url[:ondeInserirOID] + str(movie.movie_id) + url[ondeInserirOID:]
             movie_info = requests.get(enderecoParaBuscarFilme).json()
             movies_to_watch.append(movie_info)
-
+            
+    
         context = {'movies': movies_to_watch, 'user': request.user}
         return render(request, 'profile.html', context)
     else:

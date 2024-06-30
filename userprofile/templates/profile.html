@@ -19,7 +19,7 @@
             <a href="/logout">Logout</a>
         </nav>
     </header>
-
+<div class="container">
     <h1>Welcome, {{ user.username }}</h1>
     
     {% if not movies %}
@@ -34,6 +34,7 @@
         </div>
         <div class="movie_details">
             <h2>{{ movie.title }}</h2>
+            <h4>Release date: </h4>
             <p>{{ movie.overview }}</p>
             <form action="{% url 'RemoveFromWatchlist' %}" method="POST">
                 {% csrf_token %}
@@ -45,7 +46,7 @@
         </div>
     </div>
     {% endfor %}
-    {% endif %}
+    {% endif %}</div>
 </body>
 
 </html>

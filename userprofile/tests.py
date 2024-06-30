@@ -23,12 +23,6 @@ class WatchlistTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'login.html')
 
-class RemoveFromWatchlistTests(TestCase):
-
-   from django.test import TestCase, Client
-from django.urls import reverse
-from django.contrib.auth.models import User
-from mostrarinfo.models import ToWatchList
 
 class RemoveFromWatchlistTests(TestCase):
 
